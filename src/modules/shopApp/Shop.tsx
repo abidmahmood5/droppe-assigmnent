@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 
-import findIndex from 'lodash/findIndex';
-
 import Modal from "react-modal";
 import { FaTimes } from "react-icons/fa";
 
-import { Button } from "./components/button";
-import ProductList from "./components/product-list-components";
-import { Form } from "./components/form";
-import logo from "./images/droppe-logo.png";
-import img1 from "./images/img1.png";
-import img2 from "./images/img2.png";
+import { Button } from "../../components/button";
+import ProductList from "../../components/product-list-components";
+import { Form } from "../../components/form";
+import logo from "../../images/droppe-logo.png";
+import img1 from "../../images/img1.png";
+import img2 from "../../images/img2.png";
 
 import styles from "./shopApp.module.css";
 
@@ -34,9 +32,6 @@ interface State {
   isOpen: boolean;
   isShowingMessage: boolean;
   message: string;
-  numFavorites: number;
-  prodCount: number;
-  products: Product[];
 }
 
 interface SumbitPayload {
@@ -45,90 +40,39 @@ interface SumbitPayload {
   title: string;
 }
 
-interface Props {}
+interface OwnProps {
+  prodCount: number;
+  products: Product[];
+  favorites: number;
+  onSubmit(payload: SumbitPayload): Promise<boolean>;
+  onFavClick(title: string): void;
+}
 
-export class ShopApp extends Component<Props, State> {
+type Props = OwnProps;
+
+class Shop extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-
-    this.favClick = this.favClick.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       isOpen: false,
       isShowingMessage: false,
       message: '',
-      numFavorites: 0,
-      prodCount: 0,
-      products: [],
     };
   }
 
-  componentDidMount(){
-    fetch('https://fakestoreapi.com/products').then(async (response) => {
-      let products = await response.json() as Product[];
-
-      this.setState({
-        products,
-        prodCount: products.length
-      });
-    });
-  }
-
-  favClick(title: string) {
-    const {
-      products,
-      numFavorites,
-    } = this.state;
-
-    const prods = products;
-    let currentFavs = numFavorites;
-
-    const idx = findIndex(prods, { title });
-
-    if (prods[idx].isFavorite) {
-      prods[idx].isFavorite = false;
-      currentFavs -= 1;
-    } else {
-      currentFavs += 1;
-      prods[idx].isFavorite = true;
-    }
-
-    this.setState({
-      products: prods,
-      numFavorites: currentFavs,
-    });
-  }
-
-  async onSubmit({
+  handleSubmit = async ({
     description,
     price,
     title,
-  }: SumbitPayload) {
-    const { products } = this.state;
+  }: SumbitPayload) => {
+    const { onSubmit } = this.props;
 
-    const product: Product = {
-      description,
-      price,
-      title,
-    };
+    const hasFormSubmitted: boolean = await onSubmit({ description, price, title });
 
-    this.setState({
-      isOpen: false,
-      isShowingMessage: true,
-      message: 'Adding product...',
-      prodCount: products.length + 1,
-      products: [...products, product],
-    });
-
-    // **this POST request doesn't actually post anything to any database**
-    const createProduct = await fetch('https://fakestoreapi.com/products', {
-      method: 'POST',
-      body: JSON.stringify(product),
-    });
-
-    if (createProduct) {
+    if (hasFormSubmitted) {
       this.setState({
+        isOpen: false,
         isShowingMessage: false,
         message: ''
       })
@@ -148,10 +92,14 @@ export class ShopApp extends Component<Props, State> {
       isOpen,
       isShowingMessage,
       message,
-      numFavorites,
+    } = this.state;
+
+    const {
       prodCount,
       products,
-    } = this.state;
+      favorites,
+      onFavClick,
+    } = this.props;
 
     const modalContent = (
       <Modal
@@ -167,13 +115,13 @@ export class ShopApp extends Component<Props, State> {
             <FaTimes />
           </div>
 
-          <Form on-submit={this.onSubmit} />
+          <Form on-submit={this.handleSubmit} />
         </div>
       </Modal>
     );
 
     const productListContent = !!products?.length ?
-      <ProductList products={products} onFav={this.favClick} /> :
+      <ProductList products={products} onFav={onFavClick} /> :
       <div />;
 
     const messageContent = (
@@ -211,7 +159,7 @@ export class ShopApp extends Component<Props, State> {
           <div className={styles.statsContainer}>
             <span>Total products: {prodCount}</span>
             {' - '}
-            <span>Number of favorites: {numFavorites}</span>
+            <span>Number of favorites: {favorites}</span>
           </div>
 
           {productListContent}
@@ -222,3 +170,5 @@ export class ShopApp extends Component<Props, State> {
     );
   }
 }
+
+export default Shop;
