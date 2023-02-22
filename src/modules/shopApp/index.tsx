@@ -38,9 +38,9 @@ class ShopApp extends Component<{}, State> {
     super(props);
 
     this.state = {
-      products: [],
-      prodCount: 0,
       numFavorites: 0,
+      prodCount: 0,
+      products: [],
     };
   }
 
@@ -77,7 +77,7 @@ class ShopApp extends Component<{}, State> {
     });
   }
 
-  onSubmit = async({
+  onSubmit = async ({
     description,
     price,
     title,
@@ -113,18 +113,18 @@ class ShopApp extends Component<{}, State> {
 
   render() {
     const {
-      products,
-      prodCount,
       numFavorites,
+      prodCount,
+      products,
     } = this.state;
 
     return (
       <Shop
-        products={products}
-        prodCount={prodCount}
         favorites={numFavorites}
         onFavClick={this.onFavClick}
         onSubmit={this.onSubmit}
+        prodCount={prodCount}
+        products={products}
       />
     )
   }

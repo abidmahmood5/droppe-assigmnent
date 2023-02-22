@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 
-import Modal from "react-modal";
-import { FaTimes } from "react-icons/fa";
+import { Button } from "../../components/button/button";
+import Modal from "../../components/modal/Modal";
+import ProductList from "../../components/productList/product-list-components";
 
-import { Button } from "../../components/button";
-import ProductList from "../../components/product-list-components";
-import { Form } from "../../components/form";
-import logo from "../../images/droppe-logo.png";
-import img1 from "../../images/img1.png";
-import img2 from "../../images/img2.png";
+import logo from "../../assets/images/droppe-logo.png";
+import img1 from "../../assets/images/img1.png";
+import img2 from "../../assets/images/img2.png";
 
 import styles from "./shopApp.module.css";
 
@@ -29,9 +27,9 @@ interface Product {
 }
 
 interface State {
-  isOpen: boolean;
   isShowingMessage: boolean;
   message: string;
+  isOpen: boolean;
 }
 
 interface SumbitPayload {
@@ -55,9 +53,9 @@ class Shop extends Component<Props, State> {
     super(props);
 
     this.state = {
-      isOpen: false,
       isShowingMessage: false,
       message: '',
+      isOpen: false,
     };
   }
 
@@ -74,18 +72,12 @@ class Shop extends Component<Props, State> {
       this.setState({
         isOpen: false,
         isShowingMessage: false,
-        message: ''
+        message: '',
       })
     }
   }
 
-  toggleModalVisibility = () => {
-    const { isOpen } = this.state;
-
-    this.setState({
-      isOpen: !isOpen,
-    });
-  };
+  toggleModalVisibility = () => this.setState({ isOpen: !this.state.isOpen });
 
   render() {
     const {
@@ -95,30 +87,11 @@ class Shop extends Component<Props, State> {
     } = this.state;
 
     const {
+      favorites,
       prodCount,
       products,
-      favorites,
       onFavClick,
     } = this.props;
-
-    const modalContent = (
-      <Modal
-        isOpen={isOpen}
-        className={styles.reactModalContent}
-        overlayClassName={styles.reactModalOverlay}
-      >
-        <div className={styles.modalContentHelper}>
-          <div
-            className={styles.modalClose}
-            onClick={this.toggleModalVisibility}
-          >
-            <FaTimes />
-          </div>
-
-          <Form on-submit={this.handleSubmit} />
-        </div>
-      </Modal>
-    );
 
     const productListContent = !!products?.length ?
       <ProductList products={products} onFav={onFavClick} /> :
@@ -130,6 +103,14 @@ class Shop extends Component<Props, State> {
       </div>
     );
 
+    const modalContent = (
+      <Modal
+        handleSubmit={this.handleSubmit}
+        isOpen={isOpen}
+        onToggle={this.toggleModalVisibility}
+      />
+    );
+
     return (
       <React.Fragment>
         <div className={styles.header}>
@@ -138,12 +119,12 @@ class Shop extends Component<Props, State> {
           </div>
         </div>
 
-        <>
-           <span className={`container ${styles.main} ${styles.layout}`}>
-            <img src={img1} style={{maxHeight: "15em", display: 'block'}} />
-            <img src={img2} style={{maxHeight: "15rem", display: 'block'}} />
-           </span>
-        </>
+        <div>
+          <span className={`container ${styles.main} ${styles.layout}`}>
+          <img src={img1} style={{maxHeight: "15em", display: 'block'}} />
+          <img src={img2} style={{maxHeight: "15rem", display: 'block'}} />
+          </span>
+        </div>
 
         <div className={`container ${styles.main}`}>
           <div className={styles.buttonWrapper}>
@@ -165,7 +146,7 @@ class Shop extends Component<Props, State> {
           {productListContent}
         </div>
 
-        <>{modalContent}</>
+        <div>{modalContent}</div>
       </React.Fragment>
     );
   }
