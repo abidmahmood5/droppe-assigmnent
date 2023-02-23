@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`creates a button component 1`] = `
+<button
+  className="button"
+>
+  Add a Product
+</button>
+`;

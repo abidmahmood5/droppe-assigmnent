@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`creates a form 1`] = `
+<form
+  className="form"
+  onSubmit={[Function]}
+>
+  <span
+    className="label"
+  >
+    Product title: *
+  </span>
+  <input
+    className="input"
+    defaultValue=""
+    placeholder="Title..."
+  />
+  <span
+    className="label"
+  >
+    Product details: *
+  </span>
+  <input
+    className="input"
+    defaultValue=""
+    placeholder="Price..."
+  />
+  <textarea
+    className="textarea"
+    defaultValue=""
+    placeholder="Start typing product description here..."
+  />
+  <button
+    className="button"
+  >
+    Add a product
+  </button>
+</form>
+`;
