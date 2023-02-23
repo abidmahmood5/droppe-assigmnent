@@ -1,12 +1,12 @@
 import * as React from "react";
-import { Button } from "../button/button";
+import Button from "../button";
 import styles from "./form.module.css";
 
 type IFormProps = {
   "on-submit": (payload: { title: string; description: string; price: string }) => void;
 }
 
-export const Form: React.FC<IFormProps> = (props) => {
+const Form: React.FC<IFormProps> = (props) => {
   let formRef = React.useRef<HTMLFormElement>(null);
   let titleRef = React.useRef<HTMLInputElement>(null);
   let priceRef = React.useRef<HTMLInputElement>(null);
@@ -67,3 +67,5 @@ export const Form: React.FC<IFormProps> = (props) => {
     </form>
   );
 };
+
+export default Form;

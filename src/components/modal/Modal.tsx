@@ -1,7 +1,7 @@
 import React, { ReactElement, FunctionComponent } from 'react';
 import { FaTimes } from "react-icons/fa";
 
-import { Form } from "../form/form";
+import Form from "../form";
 import {
   ModalCloseButton,
   ModalContent,

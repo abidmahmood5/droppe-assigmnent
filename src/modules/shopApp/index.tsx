@@ -21,20 +21,22 @@ interface Product {
   title: string;
 }
 
-interface State {
-  prodCount: number;
-  products: Product[];
-  numFavorites: number;
-}
-
 interface SumbitPayload {
   description: string;
   price: string;
   title: string;
 }
 
-class ShopApp extends Component<{}, State> {
-  constructor (props: any) {
+interface State {
+  prodCount: number;
+  products: Product[];
+  numFavorites: number;
+}
+
+type Props = {}; // Just for the sake of better readability
+
+class ShopApp extends Component<Props, State> {
+  constructor (props: Props) {
     super(props);
 
     this.state = {

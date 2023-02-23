@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import { Button } from "../../components/button/button";
-import Modal from "../../components/modal/Modal";
-import ProductList from "../../components/productList/product-list-components";
+import Button from "../../components/button";
+import Modal from "../../components/modal";
+import ProductList from "../../components/productList";
 
 import logo from "../../assets/images/droppe-logo.png";
 import img1 from "../../assets/images/img1.png";
@@ -27,9 +27,9 @@ interface Product {
 }
 
 interface State {
+  isOpen: boolean;
   isShowingMessage: boolean;
   message: string;
-  isOpen: boolean;
 }
 
 interface SumbitPayload {
@@ -39,11 +39,11 @@ interface SumbitPayload {
 }
 
 interface OwnProps {
+  favorites: number;
+  onFavClick(title: string): void;
+  onSubmit(payload: SumbitPayload): Promise<boolean>;
   prodCount: number;
   products: Product[];
-  favorites: number;
-  onSubmit(payload: SumbitPayload): Promise<boolean>;
-  onFavClick(title: string): void;
 }
 
 type Props = OwnProps;
@@ -114,7 +114,7 @@ class Shop extends Component<Props, State> {
     return (
       <React.Fragment>
         <div className={styles.header}>
-          <div className={`container ${styles.headerImageWrapper}`}>  {/* I would use classnames package instead */}
+          <div className={`container ${styles.headerImageWrapper}`}>  {/* I would use classnames package instead or styled-components */}
             <img src={logo} className={styles.headerImage} />
           </div>
         </div>
