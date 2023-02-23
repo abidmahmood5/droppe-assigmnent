@@ -20,7 +20,7 @@ exports[`Product renders a Product 1`] = `
       }
     }
   >
-    Fake Product 20
+    Fake Product 78638
   </span>
   <p>
     <strong>
@@ -43,7 +43,7 @@ exports[`Product renders a Product 1`] = `
       </b>
     </span>
     <br />
-    Fake description 20
+    Fake description 1
   </p>
   <span
     className="action_bar"

@@ -1,6 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+
 import ProductList from '../../components/productList';
+import fixtures from '../../testing/fixtures'
 
 interface Rating {
   count: number;
@@ -24,9 +26,11 @@ describe('ProductList', () => {
 
   beforeEach(() => {
     products = [
-      { title: 'Fake Product 1', description: 'Fake description 1', price: '$23.90' },
-      { title: 'Fake Product 2', description: 'Fake description 2', price: '$45.90' },
-      { title: 'Fake Product 3', description: 'Fake description 3', price: '$89.90' },
+      fixtures.product.create({ price: '$22.0' }),
+      fixtures.product.create(),
+      fixtures.product.create({ title: 'New Fake Product' }),
+      fixtures.product.create(),
+      fixtures.product.create({ description: 'Customised description' }),
     ];
   });
 

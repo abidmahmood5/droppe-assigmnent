@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Product from '../../components/Product';
+import fixtures from '../../testing/fixtures';
 
 interface Rating {
   count: number;
@@ -23,7 +24,7 @@ describe('Product', () => {
   const onFav = jest.fn();
 
   beforeEach(() => {
-    product = { title: 'Fake Product 20', description: 'Fake description 20', price: '$23.90' };
+    product = fixtures.product.create();
   });
 
   it('renders a Product', () => {
