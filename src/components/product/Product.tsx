@@ -49,10 +49,12 @@ const Product: FunctionComponent<Props> = ({ product, onFav }) => {
     onFav(product.title);
   }, [product.title]);
 
-  // Problem: Now product title can be too long, I just put overflowX as fix now
+  /* I have removed the overflowX and few other redundant properties and
+  replace it with the whiteSpace to move the cutting text on next line. */
+
   return (
-    <span className={productClass} style={{ display: 'inline-block', overflowX: 'scroll', float: 'none', clear: 'both' }}>
-      <span className={styles['product-title']} style={{ overflowX: 'hidden' }}>{product.title}</span>
+    <span className={productClass} style={{ display: 'inline-block' }}>
+      <span className={styles['product-title']} style={{ whiteSpace: 'pre-wrap' }}>{product.title}</span>
 
       <p><strong>Rating: {product.rating ? `${product.rating.rate}/5` : ''}</strong></p>
 
