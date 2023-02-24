@@ -20,7 +20,7 @@ exports[`Product renders a Product 1`] = `
       }
     }
   >
-    Fake Product 78638
+    Fake Product 43588
   </span>
   <p>
     <strong>
@@ -31,7 +31,7 @@ exports[`Product renders a Product 1`] = `
   <p>
     <b>
       Price: $
-      NaN
+      2932.13
     </b>
   </p>
   <p

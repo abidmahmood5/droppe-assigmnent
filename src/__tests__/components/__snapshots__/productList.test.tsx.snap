@@ -21,7 +21,7 @@ exports[`ProductList renders a ProductList 1`] = `
         }
       }
     >
-      Fake Product 47320
+      Fake Product 32740
     </span>
     <p>
       <strong>
@@ -32,7 +32,7 @@ exports[`ProductList renders a ProductList 1`] = `
     <p>
       <b>
         Price: $
-        NaN
+        47009.94
       </b>
     </p>
     <p
@@ -106,7 +106,7 @@ exports[`ProductList renders a ProductList 1`] = `
         }
       }
     >
-      Fake Product 95269
+      Fake Product 64606
     </span>
     <p>
       <strong>
@@ -117,7 +117,7 @@ exports[`ProductList renders a ProductList 1`] = `
     <p>
       <b>
         Price: $
-        NaN
+        10725.3
       </b>
     </p>
     <p
@@ -202,7 +202,7 @@ exports[`ProductList renders a ProductList 1`] = `
     <p>
       <b>
         Price: $
-        NaN
+        79382.89
       </b>
     </p>
     <p
@@ -276,7 +276,7 @@ exports[`ProductList renders a ProductList 1`] = `
         }
       }
     >
-      Fake Product 46189
+      Fake Product 38410
     </span>
     <p>
       <strong>
@@ -287,7 +287,7 @@ exports[`ProductList renders a ProductList 1`] = `
     <p>
       <b>
         Price: $
-        NaN
+        46242.12
       </b>
     </p>
     <p
@@ -361,7 +361,7 @@ exports[`ProductList renders a ProductList 1`] = `
         }
       }
     >
-      Fake Product 85550
+      Fake Product 97927
     </span>
     <p>
       <strong>

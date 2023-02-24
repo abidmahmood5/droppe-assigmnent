@@ -53,9 +53,9 @@ class Shop extends Component<Props, State> {
     super(props);
 
     this.state = {
+      isOpen: false,
       isShowingMessage: false,
       message: '',
-      isOpen: false,
     };
   }
 
@@ -73,7 +73,7 @@ class Shop extends Component<Props, State> {
         isOpen: false,
         isShowingMessage: false,
         message: '',
-      })
+      });
     }
   }
 
@@ -88,13 +88,13 @@ class Shop extends Component<Props, State> {
 
     const {
       favorites,
+      onFavClick,
       prodCount,
       products,
-      onFavClick,
     } = this.props;
 
     const productListContent = !!products?.length ?
-      <ProductList products={products} onFav={onFavClick} /> :
+      <ProductList data-testid='productsList' products={products} onFav={onFavClick} /> :
       <div />;
 
     const messageContent = (
@@ -105,6 +105,7 @@ class Shop extends Component<Props, State> {
 
     const modalContent = (
       <Modal
+        data-testid='modal'
         handleSubmit={this.handleSubmit}
         isOpen={isOpen}
         onToggle={this.toggleModalVisibility}
@@ -121,7 +122,7 @@ class Shop extends Component<Props, State> {
 
         <div>
           <span className={`container ${styles.main} ${styles.layout}`}>
-          <img src={img1} style={{maxHeight: "15em", display: 'block'}} />
+          <img data-testid='image1' src={img1} style={{maxHeight: "15em", display: 'block'}} />
           <img src={img2} style={{maxHeight: "15rem", display: 'block'}} />
           </span>
         </div>
@@ -129,7 +130,7 @@ class Shop extends Component<Props, State> {
         <div className={`container ${styles.main}`}>
           <div className={styles.buttonWrapper}>
             <span role="button">
-               <Button onClick={this.toggleModalVisibility}>
+               <Button data-testid='toggleVisibility' onClick={this.toggleModalVisibility}>
                   Send product proposal
               </Button>
             </span>

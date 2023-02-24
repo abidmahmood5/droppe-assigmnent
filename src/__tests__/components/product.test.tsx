@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Product from '../../components/Product';
+import Product from '../../components/product';
 import fixtures from '../../testing/fixtures';
 
 interface Rating {
